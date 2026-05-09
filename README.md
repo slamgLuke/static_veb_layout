@@ -12,8 +12,8 @@ indexing. We compare it against flat-array binary search on the same data.
 
 ## Testing model
 
-- LRU cache simulator parameterized by block size `B` (elements) and
-  capacity `M` (blocks); every node access goes through it.
+- LRU cache simulator parameterized by block size `B` and
+  capacity `M` (in terms of number of elements); every node access goes through it.
 - Metric is total **I/O operations** (cache misses) per configuration; we
   also report wall time.
 - Cache is **shared across queries** within a configuration — warm-cache
