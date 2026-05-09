@@ -16,7 +16,7 @@ void test_build_correctness() {
     // h=2: input [1,2,3], expected layout [2,1,3]
     {
         vector<int> in = {1, 2, 3};
-        VEB t(in);
+        VEBTree t(in);
         vector<int> got;
         for (auto& n : t.layout()) got.push_back(n.key);
         vector<int> expected = {2, 1, 3};
@@ -27,7 +27,7 @@ void test_build_correctness() {
     // h=3: input [1..7], expected [4,2,6,1,3,5,7]
     {
         vector<int> in(7); iota(in.begin(), in.end(), 1);
-        VEB t(in);
+        VEBTree t(in);
         vector<int> got;
         for (auto& n : t.layout()) got.push_back(n.key);
         vector<int> expected = {4, 2, 6, 1, 3, 5, 7};
@@ -38,7 +38,7 @@ void test_build_correctness() {
     // h=4: input [1..15], expected [8,4,12,2,1,3,6,5,7,10,9,11,14,13,15]
     {
         vector<int> in(15); iota(in.begin(), in.end(), 1);
-        VEB t(in);
+        VEBTree t(in);
         vector<int> got;
         for (auto& n : t.layout()) got.push_back(n.key);
         vector<int> expected = {8,4,12,2,1,3,6,5,7,10,9,11,14,13,15};
@@ -54,7 +54,7 @@ void test_search_correctness() {
 
     int h = 4, n = (1 << h) - 1;  // 15
     vector<int> in(n); iota(in.begin(), in.end(), 1);
-    VEB t(in);
+    VEBTree t(in);
     LRUCache dummy(/*B=*/16, /*M=*/100);
 
     // Every present key should be found.
@@ -80,7 +80,7 @@ void test_io_counting() {
 
     int n = 15;
     vector<int> in(n); iota(in.begin(), in.end(), 1);
-    VEB t(in);
+    VEBTree t(in);
 
     // Search for 7 with B=4, M=2 should yield 3 misses (hand-traced).
     {
@@ -130,7 +130,7 @@ void test_stress_correctness() {
         while ((int)picked.size() < n) picked.insert(rng() % (10 * n));
         in.assign(picked.begin(), picked.end());
 
-        VEB t(in);
+        VEBTree t(in);
         LRUCache dummy(16, 1000);
 
         // Every key must be findable.

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-VEB::VEB(vector<int>& sorted_keys) {
+VEBTree::VEBTree(vector<int>& sorted_keys) {
     int n = (int)sorted_keys.size();
     height = 0;
     while ((1 << height) - 1 < n) {
@@ -32,7 +32,7 @@ VEB::VEB(vector<int>& sorted_keys) {
     link((n - 1) / 2, height, pos_of_rank);
 }
 
-void VEB::recursive_build(vector<int>& keys, vector<int>& ranks, int h, int& arr_offset, vector<int>& rank_of_pos) {
+void VEBTree::recursive_build(vector<int>& keys, vector<int>& ranks, int h, int& arr_offset, vector<int>& rank_of_pos) {
     assert((int)keys.size() == (1 << h) - 1);
 
     if (h == 1) {
@@ -75,7 +75,7 @@ void VEB::recursive_build(vector<int>& keys, vector<int>& ranks, int h, int& arr
 }
 
 
-void VEB::link(int r, int h_v, vector<int>& pos_of_rank) {
+void VEBTree::link(int r, int h_v, vector<int>& pos_of_rank) {
     int my_flat = pos_of_rank[r];
     if (h_v == 1) {
         arr[my_flat].left = arr[my_flat].right = -1;
@@ -90,7 +90,7 @@ void VEB::link(int r, int h_v, vector<int>& pos_of_rank) {
     link(rr, h_v - 1, pos_of_rank);
 }
 
-int VEB::search(int key, LRUCache& cache) {
+int VEBTree::search(int key, LRUCache& cache) {
     int i = 0;
     while (i != -1) {
         cache.access(i);
@@ -100,6 +100,6 @@ int VEB::search(int key, LRUCache& cache) {
     return -1;
 }
 
-const vector<Node>& VEB::layout() const {
+const vector<Node>& VEBTree::layout() const {
     return arr;
 }

@@ -12,7 +12,7 @@ struct Node {
     Node() : key(0), left(-1), right(-1) {}
 };
 
-class VEB {
+class VEBTree {
     vector<Node> arr;
     int height;
 
@@ -20,7 +20,7 @@ class VEB {
     void link(int r, int h_v, vector<int>& pos_of_rank);
 
    public:
-    VEB(vector<int>& sorted_keys);
+    VEBTree(vector<int>& sorted_keys);
     int search(int key, LRUCache& cache);
     const vector<Node>& layout() const;
 };
