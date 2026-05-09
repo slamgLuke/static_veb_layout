@@ -4,7 +4,7 @@
 
 ## Project focus
 
-Static implementation of the **van Emde Boas tree layout** — a cache-oblivious
+Static implementation of the **van Emde Boas tree layout** - a cache-oblivious
 layout for a complete binary search tree of `n = 2^h - 1` keys. The tree is
 built once over a sorted input; nodes carry explicit `left` / `right` indices
 into a flat node array, so traversal does not depend on heap-style implicit
