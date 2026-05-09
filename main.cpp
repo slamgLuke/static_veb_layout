@@ -30,10 +30,11 @@ int main() {
     vector<int> Bs = {4, 8, 16, 32, 64, 128, 256};
     vector<int> factors = {8, 8, 8, 8, 4, 4, 4};
 
-    for (int x = 1; x <= 6; x++) {
-        int q = 1;
-        for (int i = 0; i < x; i++) q *= 10;
-        cout << "queries=10^" << x << "\n";
+    int x = 6;
+    int q = 1;
+    for (int i = 0; i < x; i++) q *= 10;
+    cout << "queries=10^" << x << "\n";
+    {
         for (int i = 0; i < (int)Bs.size(); i++) {
             int B = Bs[i];
             int M = B * factors[i];
